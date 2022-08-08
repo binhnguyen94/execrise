@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error-block {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="add-method">
+            <p>1. Thêm một loài động vật mới vào danh sách</p>
+            <input type="text" placeholder="Nhập tên loài động vật cần thêm" onchange="promtAnimal(this)">
+            <button class="btn btn-primary" onclick="add()">Add</button>
+            <br>
+            <div class="error-block" id="add-error"></div>
+        </div>
+        <div class="check-exist-method">
+            <p>2. Kiểm tra xem loài động vật đã có trong danh sách</p>
+            <input type="text" placeholder="Nhập tên loài động vật cần kiểm tra" onchange="promtAnimal(this)">
+            <button class="btn btn-primary" onclick="checkExist()">Check</button>
+            <br>
+            <div class="message-block" id="exist-message"></div>
+        </div>
+        <div class="print-list-animals">
+            <p>3. In loài động vật đã có trong danh sách</p>
+            <button class="btn btn-primary" onclick="showAllAnimals()">Show All Animals</button>
+        </div>
+        <ul class="list-animals"></ul>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
