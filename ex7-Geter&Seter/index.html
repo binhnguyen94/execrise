@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+            get name() {
+                return this._name;
+            }
+
+            set name(value) {
+                this._name = value;
+            }
+
+            walk(description) {
+                console.log(`${this.name} đang ${description}`)
+            }
+        }
+        class Programmer extends Person {
+            constructor(name, programLanguage) {
+                super(name);
+                this.programLanguage = programLanguage;
+            }
+            get programmer() {
+                return this._programLanguage
+            }
+            set programmer(value) {
+                this._programLanguage = value;
+            }
+            writeCode() {
+                console.log(`${this.name} đang viết ${this.programLanguage}`)
+            }
+        }
+
+        let programmer = new Programmer('Binh', 'Javascript');
+        programmer.writeCode()
+        programmer.walk('đi bộ về nhà')
+    </script>
+</body>
+
+</html>
