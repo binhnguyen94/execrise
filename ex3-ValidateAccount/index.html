@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .invalid .account {
+            border: 1px solid red;
+        }
+
+        .invalid .error-message {
+            color: red;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="form-group">
+            <input type="text" name="account" placeholder="Account" id="account" class="account">
+            <span class="error-message"></span>
+        </div>
+    </form>
+
+    <script>
+        regexAccount = /^[_a-z0-9]{6,}$/;
+        var inputAccount = document.querySelector("input[name='account']");
+
+        inputAccount.onblur = function handleCheckMail() {
+            var formGroup = document.querySelector(".form-group");
+            var errorMessage = document.querySelector('.error-message')
+            var valueAccount = inputAccount.value;
+            if (regexAccount.test(valueAccount)) {
+                errorMessage.innerText = ""
+                if(formGroup.classList.contains('invalid')) {
+                    formGroup.classList.remove("invalid");
+                }
+            } else {
+                formGroup.classList.add("invalid");
+                errorMessage.innerText = "Tên Account không đúng định dạng"
+            }
+        }
+    </script>
+</body>
+
+</html>
