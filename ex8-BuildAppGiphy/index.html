@@ -1,19 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIPHY PARTY</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <button onclick="clickMe(this)">click</button>
 
+<body>
+    <div class="header">
+        <input type="text" name="search" oninput="inputValue(value)" id="search" placeholder="Nhập Giphy">
+        <button class="btn-search" onclick="searchGiphy()">Search Giphy</button>
+        <button class="btn-remove" onclick="removerAll()">Remove All</button>
+    </div>
+    <div class="container">
+        <div class="images"></div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        const clickMe = (obj) => {
-            console.log(obj)
+        let url = 'https://api.giphy.com/v1/gifs/search';
+        let searchValue;
+        let imagesArr = [];
+        let resultSearch = document.querySelector('.images')
+        // console.log(resultSearch)
+        // const axios = require('axios');
+        // console.log(axios)
+        function inputValue(value) {
+            searchValue = value;
+        }
+
+        function searchGiphy() {
+            requestDataGiphy(searchValue)
+        }
+
+        function removerAll() {
+            imagesArr = [];
+            displayShowGiphy()
+
+        }
+
+        function requestDataGiphy(searchValue) {
+            axios.get(url, {
+                params: {
+                    q: searchValue,
+                    api_key: '6IsNqpG3kt0uxJU3UzP0BwV5pvkSCWbK'
+                }
+            })
+            .then((res) => {
+                imagesArr.push(res.data.data[0]['images']['preview_gif'].url)
+            })
+            .then(() => displayShowGiphy())
+            .catch((error) => {
+                console.log(error)
+            })
+        }
+
+        function displayShowGiphy() {
+            let html = ''
+            imagesArr.map(image => {
+                html += `
+                    <div class="image-grid">
+                        <img src="${image}" class="image-giphy">
+                    </div>
+                `
+            })
+            resultSearch.innerHTML = html;
         }
     </script>
 </body>
+
 </html>
